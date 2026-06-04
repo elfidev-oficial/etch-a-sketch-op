@@ -4,6 +4,7 @@
 |-------------------|
 */
 const canvas = document.querySelector("#canvas");
+const button = document.querySelector("#canvasSize");
 
 /* 
 |---------------|
@@ -12,14 +13,14 @@ const canvas = document.querySelector("#canvas");
 */
 
 // GRID GENERATION
-function generateGrid(canvasSize) {
+function generateGrid(size) {
     // Row's loop
-    for (let i = 0; i < canvasSize; i++) {
+    for (let i = 0; i < size; i++) {
         // Create the row
         const row = document.createElement("div");
         row.setAttribute("class", "row");
         // Fill the row with squares
-        for (let j = 0; j < canvasSize; j++) {
+        for (let j = 0; j < size; j++) {
             // Create the square
             const square = document.createElement("div");
             square.setAttribute("class", "square");
@@ -41,4 +42,22 @@ function generateGrid(canvasSize) {
     }
 }
 
+// EDIT GRID'S SIZE
+function changeGridSize() {
+    let newSize = Number(prompt('Insert the new value (range = 2 - 100):', 2));
+    if (isNaN(newSize) || newSize < 2 || newSize >100) {
+        alert('ERR: Try again');
+    }
+    else {
+        while (canvas.firstChild) {
+            canvas.removeChild(canvas.firstChild);
+        }
+        generateGrid(newSize);
+    }
+}
+
+// Initial grid's scale
 generateGrid(16);
+
+// Link the button with the function
+button.addEventListener("click", changeGridSize);

@@ -65,8 +65,8 @@ body{
 }
 
 #canvas {
-    width: 500px;
-    height: 500px;
+    width: 550px;
+    height: 550px;
     flex-flow: column;
 }
 
